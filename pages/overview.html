@@ -1,204 +1,253 @@
-
 <!DOCTYPE html>
 <html lang="en" style="padding-left: 10px; padding-right: 10px;">
-    <!--Note, inline CSS is **ONLY** to restrict the view to look closer to how it would on mobile, 
+<!--Note, inline CSS is **ONLY** to restrict the view to look closer to how it would on mobile, 
         since we chose to go with a mobile first design.-->
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bucket Overview</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    </head>
 
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-        <main id="main-content" style="max-width: 600px; margin: 0 auto;">
-            <div id="bucket-header" class="container-fluid bg-info text-dark rounded-bottom border border-top-0 border-dark">
-                <h1 id="bucket-title" class="text-center">My First Bucket</h1>
-            </div>
-            <div id="bucket-progress" class="container-fluid border border-secondary rounded-top" style="margin: 5px 0px 5px 0px;">
-                <div class="row">
-                    <h4 class="col-3" style="margin: 3px;">Progress</h4>
-                    <div class="col-8">
-                        <div id="bucket-progress-bar" class="progress" role="progressbar" aria-label="bucket progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="margin: 1em 0px 1em 0px;">
-                            <div id="bucket-progress-fill" class="progress-bar text-bg-primary progress-bar-striped progress-bar-animated" style="width: 0%;">0% ($0 / $1000)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bucket Overview</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
 
-            <div id="participants" class="container-fluid border border-secondary" style="margin: 0;">
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Desktop Version -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom d-none d-md-flex">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Budget Buckets</a>
 
-                <div class="row border-bottom border-secondary" style="margin: 5px 0px 5px 0px;">
-                    <h2 class="text-center">Participants</h2>
-                </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <ul id="participants-list" class="container">
-                    <div id="participant-steffen" class="row border-bottom" style="margin-bottom: 5px;">
-                        <h6 class="col-9">Steffen N.</h6>
-                        <span class="col-2 badge text-bg-primary rounded-pill" style="max-height: 20px;">$0/$500</span>
-                    </div>
-                    <div id="participant-john" class="row" style="margin-bottom: 5px;">
-                        <h6 class="col-9">John D.</h6>
-                        <span class="col-2 badge text-bg-primary rounded-pill" style="max-height: 20px;">$0/$500</span>
-                    </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="transactions.html">Transactions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="connections.html">Connections</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
                 </ul>
             </div>
+        </div>
+    </nav>
 
-            <div id="transactions" class="container-fluid border border-secondary rounded-bottom" style="margin: 5px 0px 0px 0px;">
-                <div class="row border-bottom border-secondary" style="margin: 5px 0px 5px 0px;">
-                    <h2 class="text-center">Recent Transactions</h2>
-                </div>
-
-                <ul id="transactions-list" class="list-group">
-                    <!--Load more button-->
-                    <li id="load-more-container" class="list-group-item text-center border-0" style="margin: 0; padding: 0;">
-                        <button id="load-more-btn" type="button" class="btn btn-secondary rounded-top-0" style="width: 100%; margin-bottom: 5px;">Load More Transactions</button>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div id="new-transaction-container" class="container-fluid" style="padding: 10px 0px 0px 0px; margin: 0;">
-                <button type="button" class="btn btn-primary" style="width: 100%; margin: 0;"
-                    data-bs-toggle="modal" data-bs-target="#transaction-modal">
-                    Make New Transaction
-                </button>
-            </div>
-
-        </main>
-
-        <!-- Transaction Modal -->
-        <div class="modal fade" id="transaction-modal" tabindex="-1" aria-labelledby="transaction-modal-label" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="transaction-modal-label">New Transaction</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="transaction-form">
-                            <div class="mb-3">
-                                <label for="contributor-select" class="form-label">Contributing as</label>
-                                <select id="contributor-select" class="form-select">
-                                    <option value="steffen">Steffen N.</option>
-                                    <option value="john">John D.</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="amount-input" class="form-label">Amount ($)</label>
-                                <input type="number" id="amount-input" class="form-control" min="1" placeholder="Enter amount">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success" id="submit-transaction-btn">Submit</button>
+    <!-- Mobile Version -->
+    <div class="d-flex d-md-none fixed-bottom bg-light border-top text-center fs-5">
+        <a href="transactions.html" class="flex-fill py-2"><i
+                class="bi bi-currency-dollar text-secondary"></i></a>
+        <a href="connections.html" class="flex-fill py-2"><i
+                class="bi bi-people text-secondary"></i></a>
+        <a href="../index.html" class="flex-fill py-2 text-decoration-none text-primary fw-bold"><i
+                class="bi bi-house-door-fill text-primary"></i></a>
+        <a href="profile.html" class="flex-fill py-2"><i
+                class="bi bi-person-square text-secondary"></i></a>
+        <a href="settings.html" class="flex-fill py-2"><i
+                class="bi bi-gear-wide-connected text-secondary"></i></a>
+    </div>
+    <main id="main-content" style="max-width: 600px; margin: 0 auto;">
+        <div id="bucket-header"
+            class="container-fluid bg-info text-dark rounded-bottom border border-top-0 border-dark">
+            <h1 id="bucket-title" class="text-center">My First Bucket</h1>
+        </div>
+        <div id="bucket-progress" class="container-fluid border border-secondary rounded-top"
+            style="margin: 5px 0px 5px 0px;">
+            <div class="row">
+                <h4 class="col-3" style="margin: 3px;">Progress</h4>
+                <div class="col-8">
+                    <div id="bucket-progress-bar" class="progress" role="progressbar" aria-label="bucket progress"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="margin: 1em 0px 1em 0px;">
+                        <div id="bucket-progress-fill"
+                            class="progress-bar text-bg-primary progress-bar-striped progress-bar-animated"
+                            style="width: 0%;">0% ($0 / $1000)</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="navbar-container"></div>
+        <div id="participants" class="container-fluid border border-secondary" style="margin: 0;">
 
-        <script>
-            const PAGE_SIZE = 5;
+            <div class="row border-bottom border-secondary" style="margin: 5px 0px 5px 0px;">
+                <h2 class="text-center">Participants</h2>
+            </div>
 
-            const state = {
-                bucketGoal: 1000,
-                bucketName: "My First Bucket",
-                participants: {
-                    steffen: { name: "Steffen N.", contributed: 0, goal: 500, elementId: "participant-steffen" },
-                    john:    { name: "John D.",    contributed: 0, goal: 500, elementId: "participant-john" }
-                },
-                transactions: [],
-                visibleCount: PAGE_SIZE
-            };
+            <ul id="participants-list" class="container">
+                <div id="participant-steffen" class="row border-bottom" style="margin-bottom: 5px;">
+                    <h6 class="col-9">Steffen N.</h6>
+                    <span class="col-2 badge text-bg-primary rounded-pill" style="max-height: 20px;">$0/$500</span>
+                </div>
+                <div id="participant-john" class="row" style="margin-bottom: 5px;">
+                    <h6 class="col-9">John D.</h6>
+                    <span class="col-2 badge text-bg-primary rounded-pill" style="max-height: 20px;">$0/$500</span>
+                </div>
+            </ul>
+        </div>
 
-            function totalContributed() {
-                return Object.values(state.participants).reduce((sum, p) => sum + p.contributed, 0);
+        <div id="transactions" class="container-fluid border border-secondary rounded-bottom"
+            style="margin: 5px 0px 0px 0px;">
+            <div class="row border-bottom border-secondary" style="margin: 5px 0px 5px 0px;">
+                <h2 class="text-center">Recent Transactions</h2>
+            </div>
+
+            <ul id="transactions-list" class="list-group">
+                <!--Load more button-->
+                <li id="load-more-container" class="list-group-item text-center border-0"
+                    style="margin: 0; padding: 0;">
+                    <button id="load-more-btn" type="button" class="btn btn-secondary rounded-top-0"
+                        style="width: 100%; margin-bottom: 5px;">Load More Transactions</button>
+                </li>
+            </ul>
+
+        </div>
+
+        <div id="new-transaction-container" class="container-fluid" style="padding: 10px 0px 0px 0px; margin: 0;">
+            <button type="button" class="btn btn-primary" style="width: 100%; margin: 0;" data-bs-toggle="modal"
+                data-bs-target="#transaction-modal">
+                Make New Transaction
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Transaction Modal -->
+    <div class="modal fade" id="transaction-modal" tabindex="-1" aria-labelledby="transaction-modal-label"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transaction-modal-label">New Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="transaction-form">
+                        <div class="mb-3">
+                            <label for="contributor-select" class="form-label">Contributing as</label>
+                            <select id="contributor-select" class="form-select">
+                                <option value="steffen">Steffen N.</option>
+                                <option value="john">John D.</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount-input" class="form-label">Amount ($)</label>
+                            <input type="number" id="amount-input" class="form-control" min="1"
+                                placeholder="Enter amount">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="submit-transaction-btn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="navbar-container"></div>
+
+    <script>
+        const PAGE_SIZE = 5;
+
+        const state = {
+            bucketGoal: 1000,
+            bucketName: "My First Bucket",
+            participants: {
+                steffen: { name: "Steffen N.", contributed: 0, goal: 500, elementId: "participant-steffen" },
+                john: { name: "John D.", contributed: 0, goal: 500, elementId: "participant-john" }
+            },
+            transactions: [],
+            visibleCount: PAGE_SIZE
+        };
+
+        function totalContributed() {
+            return Object.values(state.participants).reduce((sum, p) => sum + p.contributed, 0);
+        }
+
+        function updateProgressBar() {
+            const total = totalContributed();
+            const pct = Math.min(100, Math.round((total / state.bucketGoal) * 100));
+            const fill = document.getElementById("bucket-progress-fill");
+            const bar = document.getElementById("bucket-progress-bar");
+            fill.style.width = pct + "%";
+            fill.textContent = pct + "% ($" + total + " / $" + state.bucketGoal + ")";
+            bar.setAttribute("aria-valuenow", pct);
+        }
+
+        function updateParticipantBadge(key) {
+            const p = state.participants[key];
+            const badge = document.querySelector("#" + p.elementId + " .badge");
+            badge.textContent = "$" + p.contributed + "/$" + p.goal;
+            badge.className = "col-2 badge rounded-pill " +
+                (p.contributed >= p.goal ? "text-bg-success" : "text-bg-primary");
+        }
+
+        function renderTransactions() {
+            const list = document.getElementById("transactions-list");
+            const loadMore = document.getElementById("load-more-container");
+
+            // Remove all transaction rows and empty state (keep only the load-more li)
+            list.querySelectorAll("li.list-group-item:not(#load-more-container)").forEach(li => li.remove());
+
+            if (state.transactions.length === 0) {
+                const empty = document.createElement("li");
+                empty.id = "transactions-empty";
+                empty.className = "list-group-item text-center text-muted";
+                empty.textContent = "No transactions yet";
+                list.insertBefore(empty, loadMore);
+                loadMore.style.display = "none";
+                return;
             }
 
-            function updateProgressBar() {
-                const total = totalContributed();
-                const pct = Math.min(100, Math.round((total / state.bucketGoal) * 100));
-                const fill = document.getElementById("bucket-progress-fill");
-                const bar  = document.getElementById("bucket-progress-bar");
-                fill.style.width = pct + "%";
-                fill.textContent = pct + "% ($" + total + " / $" + state.bucketGoal + ")";
-                bar.setAttribute("aria-valuenow", pct);
-            }
-
-            function updateParticipantBadge(key) {
-                const p = state.participants[key];
-                const badge = document.querySelector("#" + p.elementId + " .badge");
-                badge.textContent = "$" + p.contributed + "/$" + p.goal;
-                badge.className = "col-2 badge rounded-pill " +
-                    (p.contributed >= p.goal ? "text-bg-success" : "text-bg-primary");
-            }
-
-            function renderTransactions() {
-                const list = document.getElementById("transactions-list");
-                const loadMore = document.getElementById("load-more-container");
-
-                // Remove all transaction rows and empty state (keep only the load-more li)
-                list.querySelectorAll("li.list-group-item:not(#load-more-container)").forEach(li => li.remove());
-
-                if (state.transactions.length === 0) {
-                    const empty = document.createElement("li");
-                    empty.id = "transactions-empty";
-                    empty.className = "list-group-item text-center text-muted";
-                    empty.textContent = "No transactions yet";
-                    list.insertBefore(empty, loadMore);
-                    loadMore.style.display = "none";
-                    return;
-                }
-
-                // Render newest-first, up to visibleCount
-                const visible = state.transactions.slice(0, state.visibleCount);
-                visible.forEach(function (t, i) {
-                    const li = document.createElement("li");
-                    li.id = "transaction-" + (state.transactions.length - i);
-                    li.className = "list-group-item";
-                    li.innerHTML =
-                        '<div class="container"><div class="row">' +
-                            '<div class="col-3 border-end" style="padding: 0;"><b>' + t.name + '</b></div>' +
-                            '<div class="col"><p style="text-align: end; margin: 0px;">added $' + t.amount + ' to ' + state.bucketName + '</p></div>' +
-                        '</div></div>';
-                    list.insertBefore(li, loadMore);
-                });
-
-                loadMore.style.display = state.visibleCount >= state.transactions.length ? "none" : "block";
-            }
-
-            function addTransaction(participantName, amount) {
-                state.transactions.unshift({ name: participantName, amount: amount });
-                state.visibleCount = PAGE_SIZE;
-                renderTransactions();
-            }
-
-            document.getElementById("load-more-btn").addEventListener("click", function () {
-                state.visibleCount += PAGE_SIZE;
-                renderTransactions();
+            // Render newest-first, up to visibleCount
+            const visible = state.transactions.slice(0, state.visibleCount);
+            visible.forEach(function (t, i) {
+                const li = document.createElement("li");
+                li.id = "transaction-" + (state.transactions.length - i);
+                li.className = "list-group-item";
+                li.innerHTML =
+                    '<div class="container"><div class="row">' +
+                    '<div class="col-3 border-end" style="padding: 0;"><b>' + t.name + '</b></div>' +
+                    '<div class="col"><p style="text-align: end; margin: 0px;">added $' + t.amount + ' to ' + state.bucketName + '</p></div>' +
+                    '</div></div>';
+                list.insertBefore(li, loadMore);
             });
 
-            document.getElementById("submit-transaction-btn").addEventListener("click", function () {
-                const key = document.getElementById("contributor-select").value;
-                const amount = parseInt(document.getElementById("amount-input").value, 10);
+            loadMore.style.display = state.visibleCount >= state.transactions.length ? "none" : "block";
+        }
 
-                if (!amount || amount <= 0) return;
-
-                state.participants[key].contributed += amount;
-                updateParticipantBadge(key);
-                updateProgressBar();
-                addTransaction(state.participants[key].name, amount);
-
-                document.getElementById("amount-input").value = "";
-                bootstrap.Modal.getInstance(document.getElementById("transaction-modal")).hide();
-            });
-
-            // Hide load-more button initially (no transactions yet)
+        function addTransaction(participantName, amount) {
+            state.transactions.unshift({ name: participantName, amount: amount });
+            state.visibleCount = PAGE_SIZE;
             renderTransactions();
-        </script>
-    </body>
+        }
+
+        document.getElementById("load-more-btn").addEventListener("click", function () {
+            state.visibleCount += PAGE_SIZE;
+            renderTransactions();
+        });
+
+        document.getElementById("submit-transaction-btn").addEventListener("click", function () {
+            const key = document.getElementById("contributor-select").value;
+            const amount = parseInt(document.getElementById("amount-input").value, 10);
+
+            if (!amount || amount <= 0) return;
+
+            state.participants[key].contributed += amount;
+            updateParticipantBadge(key);
+            updateProgressBar();
+            addTransaction(state.participants[key].name, amount);
+
+            document.getElementById("amount-input").value = "";
+            bootstrap.Modal.getInstance(document.getElementById("transaction-modal")).hide();
+        });
+
+        // Hide load-more button initially (no transactions yet)
+        renderTransactions();
+    </script>
+</body>
+
 </html>
