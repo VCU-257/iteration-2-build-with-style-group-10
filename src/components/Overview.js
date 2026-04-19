@@ -43,7 +43,7 @@ function Overview() {
     <>
       <main id="main-content" style={{ maxWidth: '600px', margin: '0 auto' }}>
 
-        <div id="bucket-header" className="container-fluid bg-info text-dark rounded-bottom border border-top-0 border-dark">
+        <div id="bucket-header" className="container-fluid bg-primary text-white rounded-bottom border border-top-0 border-dark">
           <h1 id="bucket-title" className="text-center">{BUCKET_NAME}</h1>
         </div>
 
