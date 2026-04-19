@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 5;
 
 function TransactionRow({ t, bucketName }) {
   return (
