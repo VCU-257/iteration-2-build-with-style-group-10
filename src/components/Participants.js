@@ -16,13 +16,12 @@ function Participants({ participants }) {
           <div
             key={key}
             id={`participant-${key}`}
-            className={`row${idx < entries.length - 1 ? ' border-bottom' : ''}`}
+            className={`row align-items-center${idx < entries.length - 1 ? ' border-bottom' : ''}`}
             style={{ marginBottom: '5px' }}
           >
-            <h6 className="col-9">{p.name}</h6>
+            <h6 className="col-8">{p.name}</h6>
             <span
-              className={`col-2 badge rounded-pill ${p.contributed >= p.goal ? 'text-bg-success' : 'text-bg-primary'}`}
-              style={{ maxHeight: '20px' }}
+              className={`col-4 badge rounded-pill ${p.contributed >= p.goal ? 'text-bg-success' : 'text-bg-primary'}`}
             >
               ${p.contributed}/${p.goal}
             </span>
