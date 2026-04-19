@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import BucketProgress from './BucketProgress';
-import Participants from './Participants';
-import Transactions from './Transactions';
-import NewTransaction from './NewTransaction';
+import BucketProgress from './overview/BucketProgress';
+import Participants from './overview/Participants';
+import Transactions from './overview/Transactions';
+import NewTransaction from './overview/NewTransaction';
 
 const BUCKET_GOAL = 1000;
 const BUCKET_NAME = "My First Bucket";
