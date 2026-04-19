@@ -1,16 +1,21 @@
 import { useState } from 'react';
 
-function NewTransaction({ participants, onSubmit }) {
+function NewTransaction({ onSubmit }) {
   const [showModal, setShowModal] = useState(false);
-  const [selectedContributor, setSelectedContributor] = useState(Object.keys(participants)[0]);
+  const [contributorName, setContributorName] = useState('');
   const [amount, setAmount] = useState('');
+
+  function handleClose() {
+    setContributorName('');
+    setAmount('');
+    setShowModal(false);
+  }
 
   function handleSubmit() {
     const amt = parseInt(amount, 10);
-    if (!amt || amt <= 0) return;
-    onSubmit(selectedContributor, amt);
-    setAmount('');
-    setShowModal(false);
+    if (!contributorName.trim() || !amt || amt <= 0) return;
+    onSubmit(contributorName.trim(), amt);
+    handleClose();
   }
 
   return (
@@ -39,22 +44,20 @@ function NewTransaction({ participants, onSubmit }) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="transaction-modal-label">New Transaction</h5>
-              <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+              <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form id="transaction-form">
                 <div className="mb-3">
-                  <label htmlFor="contributor-select" className="form-label">Contributing as</label>
-                  <select
-                    id="contributor-select"
-                    className="form-select"
-                    value={selectedContributor}
-                    onChange={e => setSelectedContributor(e.target.value)}
-                  >
-                    {Object.entries(participants).map(([key, p]) => (
-                      <option key={key} value={key}>{p.name}</option>
-                    ))}
-                  </select>
+                  <label htmlFor="contributor-name" className="form-label">Contributing as</label>
+                  <input
+                    type="text"
+                    id="contributor-name"
+                    className="form-control"
+                    placeholder="Enter your name"
+                    value={contributorName}
+                    onChange={e => setContributorName(e.target.value)}
+                  />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="amount-input" className="form-label">Amount ($)</label>
@@ -71,7 +74,7 @@ function NewTransaction({ participants, onSubmit }) {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
+              <button type="button" className="btn btn-secondary" onClick={handleClose}>Cancel</button>
               <button type="button" className="btn btn-success" id="submit-transaction-btn" onClick={handleSubmit}>Submit</button>
             </div>
           </div>

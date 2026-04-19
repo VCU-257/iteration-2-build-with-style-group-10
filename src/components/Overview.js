@@ -7,10 +7,7 @@ import NewTransaction from './NewTransaction';
 const BUCKET_GOAL = 1000;
 const BUCKET_NAME = "My First Bucket";
 
-const initialParticipants = {
-  steffen: { name: "Steffen N.", contributed: 0, goal: 500 },
-  john:    { name: "John D.",    contributed: 0, goal: 500 },
-};
+const initialParticipants = {};
 
 function Overview() {
   const [participants, setParticipants] = useState(initialParticipants);
@@ -18,12 +15,24 @@ function Overview() {
 
   const totalContributed = Object.values(participants).reduce((sum, p) => sum + p.contributed, 0);
 
-  function handleSubmit(key, amount) {
-    const name = participants[key].name;
-    setParticipants(prev => ({
-      ...prev,
-      [key]: { ...prev[key], contributed: prev[key].contributed + amount },
-    }));
+  function handleSubmit(name, amount) {
+    const key = name.toLowerCase().replace(/\s+/g, '_');
+
+    setParticipants(prev => {
+      const updated = {
+        ...prev,
+        [key]: {
+          name,
+          contributed: (prev[key]?.contributed ?? 0) + amount,
+          goal: 0,
+        },
+      };
+      const goalPerPerson = Math.round(BUCKET_GOAL / Object.keys(updated).length);
+      return Object.fromEntries(
+        Object.entries(updated).map(([k, p]) => [k, { ...p, goal: goalPerPerson }])
+      );
+    });
+
     setTransactions(prev => [{ name, amount }, ...prev]);
   }
 
@@ -35,7 +44,7 @@ function Overview() {
       <BucketProgress totalContributed={totalContributed} bucketGoal={BUCKET_GOAL} />
       <Participants participants={participants} />
       <Transactions transactions={transactions} bucketName={BUCKET_NAME} />
-      <NewTransaction participants={participants} onSubmit={handleSubmit} />
+      <NewTransaction onSubmit={handleSubmit} />
     </main>
   );
 }

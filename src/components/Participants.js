@@ -7,6 +7,11 @@ function Participants({ participants }) {
         <h2 className="text-center">Participants</h2>
       </div>
       <ul id="participants-list" className="container">
+        {entries.length === 0 && (
+          <li className="list-group-item text-center text-muted" style={{ listStyle: 'none' }}>
+            No participants yet
+          </li>
+        )}
         {entries.map(([key, p], idx) => (
           <div
             key={key}
