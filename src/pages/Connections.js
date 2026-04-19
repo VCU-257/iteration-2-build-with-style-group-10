@@ -1,0 +1,50 @@
+import React from "react";
+
+function Connections() {
+    return (
+        <div>
+            //Desktop Version
+            <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom d-none d-md-flex">
+                <div class="container">
+                    <a class="navbar-brand" href="../index.html">Budget Buckets</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link text-secondary" href="transactions.html"><i
+                                class="bi bi-currency-dollar"></i> Transactions</a></li>
+                            <li class="nav-item"><a class="nav-link text-primary active" href="connections.html"><i
+                                class="bi bi-people"></i> Connections</a></li>
+                            <li class="nav-item"><a class="nav-link text-secondary" href="../index.html"><i
+                                class="bi bi-house-door-fill"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-secondary" href="profile.html"><i
+                                class="bi bi-person-square"></i> Profile</a></li>
+                            <li class="nav-item"><a class="nav-link text-secondary" href="settings.html"><i
+                                class="bi bi-gear-wide-connected"></i> Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            //Mobile Version
+            <div class="d-flex d-md-none fixed-bottom bg-light border-top text-center fs-5">
+                <a href="transactions.html" class="flex-fill py-2"><i class="bi bi-currency-dollar text-secondary"></i></a>
+                <a href="connections.html" class="flex-fill py-2"><i class="bi bi-people text-primary"></i></a>
+                <a href="../index.html" class="flex-fill py-2 text-decoration-none text-primary fw-bold"><i
+                    class="bi bi-house-door-fill text-secondary"></i></a>
+                <a href="profile.html" class="flex-fill py-2"><i class="bi bi-person-square text-secondary"></i></a>
+                <a href="settings.html" class="flex-fill py-2"><i class="bi bi-gear-wide-connected text-secondary"></i></a>
+            </div>
+
+            //TO DO: fill the container with content
+            <div class="container pt-3 pb-5">
+                <p> Welcome to the fake Connections Page</p>
+            </div>
+        </div>
+    );
+}
+
+export default Connections;
