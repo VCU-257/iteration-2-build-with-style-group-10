@@ -6,6 +6,10 @@
   --bs-body-bg: #ffffff;
 }
 
+.modal-footer .btn {
+  margin-top: 0;
+}
+
 .btn-secondary {
   --bs-btn-color: #333;
   --bs-btn-hover-color: #333;

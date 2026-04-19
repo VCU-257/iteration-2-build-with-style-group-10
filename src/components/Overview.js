@@ -138,7 +138,7 @@ function Overview() {
           <button
             type="button"
             className="btn btn-primary"
-            style={{ width: '100%', margin: '0' }}
+            style={{ width: '100%' }}
             onClick={() => setShowModal(true)}
           >
             Make New Transaction
