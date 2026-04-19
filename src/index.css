@@ -6,6 +6,15 @@
   --bs-body-bg: #ffffff;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+}
+
+#participants-list .badge,
+#transactions-list .list-group-item {
+  font-family: 'Mulish', sans-serif;
+}
+
 .modal-footer .btn {
   margin-top: 0;
 }
