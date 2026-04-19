@@ -1,3 +1,5 @@
+import './Participants.css';
+
 function Participants({ participants }) {
   const entries = Object.entries(participants);
 

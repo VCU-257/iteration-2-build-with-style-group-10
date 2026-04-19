@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Transactions.css';
 
 const PAGE_SIZE = 5;
 

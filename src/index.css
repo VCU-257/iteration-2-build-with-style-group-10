@@ -10,11 +10,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'DM Sans', sans-serif;
 }
 
-#participants-list .badge,
-#transactions-list .list-group-item {
-  font-family: 'Mulish', sans-serif;
-}
-
 /* Force dark text on primary/success backgrounds to meet WCAG AA contrast */
 .text-bg-primary,
 .text-bg-success {
@@ -31,10 +26,6 @@ h1, h2, h3, h4, h5, h6 {
   --bs-btn-color: #000;
   --bs-btn-hover-color: #000;
   --bs-btn-active-color: #000;
-}
-
-.modal-footer .btn {
-  margin-top: 0;
 }
 
 .btn-secondary {

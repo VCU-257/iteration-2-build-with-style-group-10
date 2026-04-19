@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './NewTransaction.css';
 
 function NewTransaction({ onSubmit }) {
   const [showModal, setShowModal] = useState(false);
