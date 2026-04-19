@@ -1,12 +1,26 @@
 function BucketProgress({ totalContributed, bucketGoal }) {
   const pct = Math.min(100, Math.round((totalContributed / bucketGoal) * 100));
 
-  // Interior bucket coordinates within the SVG viewBox
-  const rimY = 30;
+  const topY = 30;
   const bottomY = 96;
-  const interiorHeight = bottomY - rimY;
+  const interiorHeight = bottomY - topY;
   const waterHeight = (pct / 100) * interiorHeight;
   const waterY = bottomY - waterHeight;
+
+  // 4 wave periods spanning x=-50 to x=150, amplitude ±3 units.
+  // Animating translateX by -50 (one full period) creates a seamless loop.
+  const buildWavePath = (y) => [
+    `M -50 ${y}`,
+    `Q -37.5 ${y - 3} -25 ${y}`,
+    `Q -12.5 ${y + 3}   0 ${y}`,
+    `Q  12.5 ${y - 3}  25 ${y}`,
+    `Q  37.5 ${y + 3}  50 ${y}`,
+    `Q  62.5 ${y - 3}  75 ${y}`,
+    `Q  87.5 ${y + 3} 100 ${y}`,
+    `Q 112.5 ${y - 3} 125 ${y}`,
+    `Q 137.5 ${y + 3} 150 ${y}`,
+    `L 150 ${bottomY} L -50 ${bottomY} Z`,
+  ].join(' ');
 
   return (
     <div
@@ -27,45 +41,36 @@ function BucketProgress({ totalContributed, bucketGoal }) {
           </clipPath>
         </defs>
 
-        {/* Water fill, clipped to bucket shape */}
-        <rect
-          x="0"
-          y={waterY}
-          width="100"
-          height={waterHeight}
-          fill="var(--bs-primary)"
-          clipPath="url(#bucket-clip)"
-          style={{ transition: 'y 0.6s ease, height 0.6s ease' }}
-        />
-
-        {/* Wave at water surface */}
-        {pct > 0 && pct < 100 && (
-          <ellipse
-            cx="50"
-            cy={waterY}
-            rx="35"
-            ry="3"
-            fill="var(--bs-primary)"
-            opacity="0.5"
-            clipPath="url(#bucket-clip)"
-            style={{ transition: 'cy 0.6s ease' }}
-          />
+        {/* Full flat fill at 100% */}
+        {pct === 100 && (
+          <polygon points="14,30 86,30 76,96 24,96" fill="var(--bs-primary)" />
         )}
 
-        {/* Bucket outline */}
-        <polygon
-          points="14,30 86,30 76,96 24,96"
+        {/* Animated wave fill between 0–100% */}
+        {pct > 0 && pct < 100 && (
+          <g clipPath="url(#bucket-clip)">
+            <path d={buildWavePath(waterY)} fill="var(--bs-primary)">
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                from="0 0"
+                to="-50 0"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </g>
+        )}
+
+        {/* Open-top bucket outline (left side, bottom, right side — no top edge) */}
+        <path
+          d="M 14 30 L 24 96 L 76 96 L 86 30"
           fill="none"
           stroke="#444"
           strokeWidth="3"
           strokeLinejoin="round"
+          strokeLinecap="round"
         />
-
-        {/* Rim */}
-        <line x1="11" y1="30" x2="89" y2="30" stroke="#444" strokeWidth="4.5" strokeLinecap="round" />
-
-        {/* Handle */}
-        <path d="M 30 30 Q 50 6 70 30" fill="none" stroke="#444" strokeWidth="3" strokeLinecap="round" />
       </svg>
       <p style={{ margin: '2px 0 6px', fontSize: '0.9rem' }}>
         {pct}% (${totalContributed} / ${bucketGoal})
