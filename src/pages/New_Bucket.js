@@ -1,18 +1,10 @@
 import React from "react";
-
+import Navbar from '../components/navbar/Navbar';
 function New_Bucket() {
     return (
         <div>
             <Navbar activePage="Home" />
-            <div class="container-fluid bg-secondary text-center text-white" style="height: 25px">
-                <div class="row">
-                    <div class="col h-100">
-                        New Bucket
-                    </div>
-                </div>
-            </div>
-
-            <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" action="overview.html">
+                <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" action="/">
                 <div>
                     <label for="inputName" class="form-label">Bucket Name</label>
                     <input type="text" class="form-control" id="inputName" />
@@ -44,8 +36,7 @@ function New_Bucket() {
                     <div>
                         <p><a href="#">Send Invite Link for New Users</a></p>
                     </div>
-                    <button href="#" type="submit" class="btn btn-secondary text-white mb-5">View Bucket</button>
-
+                    <button href="#" type="submit" class="btn btn-primary text-black mb-5">View Bucket</button>
                 </div>
             </form>
         </div>

@@ -4,6 +4,8 @@ import Transactions from './pages/Transactions';
 import Connections from './pages/Connections';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import New_Bucket from './pages/New_Bucket';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/connections" element={<Connections />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/new_bucket" element={<New_Bucket />} />
+        <Route path ="/dashboard" element={<Dashboard />}/>
       </Routes>
     </BrowserRouter>
   );

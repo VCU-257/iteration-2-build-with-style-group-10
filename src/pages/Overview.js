@@ -38,8 +38,9 @@ function Overview() {
   }
 
   return (
+    <div>
+      <Navbar />
     <main id="main-content" style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <Navbar activePage="home"/>
       <div id="bucket-header" className="container-fluid bg-primary text-black rounded-bottom border border-top-0 border-dark">
         <h1 id="bucket-title" className="text-center">{BUCKET_NAME}</h1>
       </div>
@@ -48,6 +49,7 @@ function Overview() {
       <Transactions transactions={transactions} bucketName={BUCKET_NAME} />
       <NewTransaction onSubmit={handleSubmit} />
     </main>
+    </div>
   );
 }
 
