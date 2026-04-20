@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import BucketProgress from './overview/BucketProgress';
-import Participants from './overview/Participants';
-import Transactions from './overview/Transactions';
-import NewTransaction from './overview/NewTransaction';
+import Navbar from '../components/navbar/Navbar';
+import BucketProgress from '../components/overview/BucketProgress';
+import Participants from '../components/overview/Participants';
+import Transactions from '../components/overview/Transactions';
+import NewTransaction from '../components/overview/NewTransaction';
 
 const BUCKET_GOAL = 1000;
 const BUCKET_NAME = "My First Bucket";
@@ -38,6 +39,7 @@ function Overview() {
 
   return (
     <main id="main-content" style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <Navbar activePage="home"/>
       <div id="bucket-header" className="container-fluid bg-primary text-black rounded-bottom border border-top-0 border-dark">
         <h1 id="bucket-title" className="text-center">{BUCKET_NAME}</h1>
       </div>

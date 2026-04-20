@@ -1,96 +1,46 @@
-import React from "react";
+import Navbar from '../components/navbar/Navbar';
 
 function Profile() {
-    return (
-        <div>
-            //Desktop Version
-            <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom d-none d-md-flex">
-                <div class="container">
-                    <a class="navbar-brand" href="../index.html">Budget Buckets</a>
+  return (
+    <div>
+      <Navbar />
+      <div className="container pt-3 pb-5">
+        <img
+          src="profile-pic.png"
+          className="rounded-circle"
+          alt="profile picture"
+          width="150"
+          height="150"
+          style={{ marginLeft: '20px', marginTop: '20px' }}
+        />
+        <div className="d-inline p-2">username</div>
+        <a href="/connections" className="btn">3 friends</a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link text-secondary" href="transactions.html"><i
-                                class="bi bi-currency-dollar"></i> Transactions</a></li>
-                            <li class="nav-item"><a class="nav-link text-secondary" href="connections.html"><i
-                                class="bi bi-people"></i> Connections</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../index.html"><i
-                                class="bi bi-house-door-fill"></i> Home</a></li>
-                            <li class="nav-item"><a class="nav-link active text-primary" href="profile.html"><i
-                                class="bi bi-person-square"></i> Profile</a></li>
-                            <li class="nav-item"><a class="nav-link text-secondary" href="settings.html"><i
-                                class="bi bi-gear-wide-connected"></i> Settings</a></li>
-                        </ul>
-                    </div>
+        <div className="list-group mt-3">
+          {['Bucket1', 'Bucket2', 'Bucket3'].map((id) => (
+            <div key={id}>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action"
+                data-bs-toggle="collapse"
+                data-bs-target={`#${id}`}
+                aria-expanded="false"
+              >
+                Budget Bucket
+              </a>
+              <div className="collapse" id={id}>
+                <div className="card card-body">
+                  <p>Amount saved: $1000</p>
+                  Amount remaining: $500
+                  <a href="/" className="btn btn-primary d-grid px-2 py-1">View More Details</a>
                 </div>
-            </nav>
-
-            //Mobile Version
-            <div class="d-flex d-md-none fixed-bottom bg-light border-top text-center fs-5">
-                <a href="transactions.html" class="flex-fill py-2"><i class="bi bi-currency-dollar text-secondary"></i></a>
-                <a href="connections.html" class="flex-fill py-2"><i class="bi bi-people text-secondary"></i></a>
-                <a href="../index.html" class="flex-fill py-2 text-decoration-none text-primary fw-bold"><i
-                    class="bi bi-house-door-fill text-secondary"></i></a>
-                <a href="profile.html" class="flex-fill py-2"><i class="bi bi-person-square text-primary"></i></a>
-                <a href="settings.html" class="flex-fill py-2"><i class="bi bi-gear-wide-connected text-secondary"></i></a>
+              </div>
             </div>
-            //TO DO: fill the container with content
-            <div class="container pt-3 pb-5">
-                <title>Profile</title>
-                <img src="profile-pic.png" class="rounded-circle" alt="profile picture" width="150" height="150" 
-                        style="margin-left: 20px; margin-top: 20px;"/>
-                <div class="d-inline p-2 ">username</div>
-                //<button type="button d-inline p-2 " class="btn"> 43 friends</button>
-                <a href="friends.html" class="btn ">
-                    3 friends
-                </a>
-
-
-                <div class="list-group">
-
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#Bucket1"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Budget Bucket</a>
-                    <div class="collapse" id="Bucket1">
-                        <div class="card card-body">
-                            <p>Amount saved: $1000</p>
-                            Amount remaining: $500
-                            <a href="overview.html" class="btn btn-primary d-grid px-2 py-1">
-                                View More Details
-                            </a>
-                        </div>
-                    </div>
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#Bucket2"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Budget Bucket</a>
-                    <div class="collapse" id="Bucket2">
-                        <div class="card card-body">
-                            <p>Amount saved: $1000</p>
-                            Amount remaining: $500
-                            <a href="overview.html" class="btn btn-primary d-grid px-2 py-1">
-                                View More Details
-                            </a>
-                        </div>
-                    </div>
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#Bucket3"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Budget Bucket</a>
-                    <div class="collapse" id="Bucket3">
-                        <div class="card card-body">
-                            <p>Amount saved: $1000</p>
-                            Amount remaining: $500
-                            <a href="overview.html" class="btn btn-primary d-grid px-2 py-1">
-                                View More Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 }
+
 export default Profile;
