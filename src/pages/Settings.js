@@ -3,7 +3,7 @@ import Navbar from '../components/navbar/Navbar';
 function Settings() {
   return (
     <div>
-      <Navbar />
+      <Navbar activePage="Settings"/>
       <div className="container pt-4 pb-5">
         <h1 className="mb-4">Settings</h1>
 
