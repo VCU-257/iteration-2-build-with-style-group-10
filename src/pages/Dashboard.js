@@ -48,7 +48,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <a href="new_bucket" class="btn btn-secondary rounded-pill">New
+                <a href="new_bucket" class="btn btn-primary ">New
                     Bucket</a>
             </div>
         </div>
