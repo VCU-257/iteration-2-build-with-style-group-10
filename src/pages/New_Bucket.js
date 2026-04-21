@@ -4,7 +4,7 @@ function New_Bucket() {
     return (
         <div>
             <Navbar activePage="Home" />
-                <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" action="/">
+                <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" action="/overview">
                 <div>
                     <label for="inputName" class="form-label">Bucket Name</label>
                     <input type="text" class="form-control" id="inputName" />
