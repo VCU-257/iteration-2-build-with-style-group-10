@@ -11,13 +11,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Overview />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/connections" element={<Connections />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/new_bucket" element={<New_Bucket />} />
-        <Route path ="/dashboard" element={<Dashboard />}/>
+        <Route path ="/overview" element={<Overview />}/>
       </Routes>
     </BrowserRouter>
   );
