@@ -18,7 +18,7 @@ function App() {
         <Route path="/connections" element={<Connections />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/new_bucket" element={<NewBucket />} />
+        <Route path="/newbucket" element={<NewBucket />} />
         <Route path ="/overview" element={<Overview />}/>
       </Routes>
     </BrowserRouter>

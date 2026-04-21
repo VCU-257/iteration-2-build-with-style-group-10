@@ -53,8 +53,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <a href="new_bucket" class="btn btn-primary ">New
-                    Bucket</a>
+                <Link to="/newbucket" className="btn btn-primary">New Bucket</Link>
             </div>
         </div>
     );
