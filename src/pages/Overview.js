@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../components/navbar/Navbar';
+import { useBucket } from '../context/BucketContext';
 import BucketProgress from '../components/overview/BucketProgress';
 import Participants from '../components/overview/Participants';
 import Transactions from '../components/overview/Transactions';
@@ -8,7 +9,7 @@ import NewTransaction from '../components/overview/NewTransaction';
 const initialParticipants = {};
 
 function Overview() {
-  const [bucketName, setBucketName] = useState('My First Bucket');
+  const { bucketName, setBucketName } = useBucket();
   const [bucketGoal, setBucketGoal] = useState(1000);
   const [editName, setEditName] = useState('');
   const [editGoal, setEditGoal] = useState('');

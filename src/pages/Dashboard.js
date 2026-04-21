@@ -1,11 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
+import { useBucket } from "../context/BucketContext";
 function Dashboard() {
+    const { bucketName } = useBucket();
     return (
         <div>
             <Navbar />
             <div class="container col-lg-11 col-xxl-5 mt-4 d-grid row-gap-3">
-                <div class="card" style={{ height: "150px" }}>
+                <Link to="/overview" style={{ textDecoration: "none", color: "inherit" }}>
+                <div class="card" style={{ height: "150px", cursor: "pointer" }}>
                     <div class="row h-100 g-0 d-flex my-auto">
                         <div class="col-md-4 d-flex justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" style={{ height: '75px', width: '75px' }} fill="currentColor" class="bi bi-bucket-fill d-flex align-self-center" viewBox="0 0 16 16">
@@ -14,11 +18,12 @@ function Dashboard() {
                         </div>
                         <div class="col-md-8 align-self-start">
                             <div class="card-body">
-                                <h5 class="card-title">Bucket Name</h5>
+                                <h5 class="card-title">{bucketName}</h5>
                             </div>
                         </div>
                     </div>
                 </div>
+                </Link>
 
                 <div class="card" style={{ height: "150px" }}>
                     <div class="row h-100 g-0 d-flex my-auto">
