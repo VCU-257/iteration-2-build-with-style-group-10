@@ -5,13 +5,13 @@ import Participants from '../components/overview/Participants';
 import Transactions from '../components/overview/Transactions';
 import NewTransaction from '../components/overview/NewTransaction';
 
-const BUCKET_GOAL = 1000;
-
 const initialParticipants = {};
 
 function Overview() {
   const [bucketName, setBucketName] = useState('My First Bucket');
+  const [bucketGoal, setBucketGoal] = useState(1000);
   const [editName, setEditName] = useState('');
+  const [editGoal, setEditGoal] = useState('');
   const [showEditModal, setShowEditModal] = useState(false);
   const [participants, setParticipants] = useState(initialParticipants);
   const [transactions, setTransactions] = useState([]);
@@ -30,7 +30,7 @@ function Overview() {
           goal: 0,
         },
       };
-      const goalPerPerson = Math.round(BUCKET_GOAL / Object.keys(updated).length);
+      const goalPerPerson = Math.round(bucketGoal / Object.keys(updated).length);
       return Object.fromEntries(
         Object.entries(updated).map(([k, p]) => [k, { ...p, goal: goalPerPerson }])
       );
@@ -41,12 +41,25 @@ function Overview() {
 
   function handleEditOpen() {
     setEditName(bucketName);
+    setEditGoal(String(bucketGoal));
     setShowEditModal(true);
   }
 
   function handleEditSave() {
-    const trimmed = editName.trim();
-    if (trimmed) setBucketName(trimmed);
+    const trimmedName = editName.trim();
+    const parsedGoal = parseInt(editGoal, 10);
+    if (trimmedName) setBucketName(trimmedName);
+    if (parsedGoal > 0) {
+      setBucketGoal(parsedGoal);
+      setParticipants(prev => {
+        const count = Object.keys(prev).length;
+        if (count === 0) return prev;
+        const goalPerPerson = Math.round(parsedGoal / count);
+        return Object.fromEntries(
+          Object.entries(prev).map(([k, p]) => [k, { ...p, goal: goalPerPerson }])
+        );
+      });
+    }
     setShowEditModal(false);
   }
 
@@ -58,7 +71,7 @@ function Overview() {
         <div id="bucket-header" className="card border-0 shadow-sm rounded-3 mb-4 text-white bg-primary">
           <div className="card-body text-center py-4">
             <h1 id="bucket-title" className="fw-bold mb-1">{bucketName}</h1>
-            <p className="mb-0" style={{ opacity: 0.8 }}>Savings Goal: ${BUCKET_GOAL}</p>
+            <p className="mb-0" style={{ opacity: 0.8 }}>Savings Goal: ${bucketGoal}</p>
           </div>
         </div>
 
@@ -69,7 +82,7 @@ function Overview() {
             className="btn btn-secondary rounded-3"
             style={{ width: '52px', flexShrink: 0, padding: 0 }}
             onClick={handleEditOpen}
-            title="Edit bucket name"
+            title="Edit bucket"
           >
             <i className="bi bi-pencil-square" style={{ fontSize: '1.2rem' }}></i>
           </button>
@@ -78,7 +91,7 @@ function Overview() {
 
         <div className="row g-4 mb-4">
           <div className="col-md-5">
-            <BucketProgress totalContributed={totalContributed} bucketGoal={BUCKET_GOAL} />
+            <BucketProgress totalContributed={totalContributed} bucketGoal={bucketGoal} />
           </div>
           <div className="col-md-7">
             <Participants participants={participants} />
@@ -101,19 +114,33 @@ function Overview() {
         <div className="modal-dialog">
           <div className="modal-content border-0 shadow">
             <div className="modal-header">
-              <h5 className="modal-title fw-semibold" id="edit-bucket-modal-label">Edit Bucket Name</h5>
+              <h5 className="modal-title fw-semibold" id="edit-bucket-modal-label">Edit Bucket</h5>
               <button type="button" className="btn-close" onClick={() => setShowEditModal(false)} aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <label htmlFor="bucket-name-input" className="form-label fw-medium">Bucket Name</label>
-              <input
-                type="text"
-                id="bucket-name-input"
-                className="form-control"
-                value={editName}
-                onChange={e => setEditName(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleEditSave()}
-              />
+              <div className="mb-3">
+                <label htmlFor="bucket-name-input" className="form-label fw-medium">Bucket Name</label>
+                <input
+                  type="text"
+                  id="bucket-name-input"
+                  className="form-control"
+                  value={editName}
+                  onChange={e => setEditName(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleEditSave()}
+                />
+              </div>
+              <div className="mb-1">
+                <label htmlFor="bucket-goal-input" className="form-label fw-medium">Goal Amount ($)</label>
+                <input
+                  type="number"
+                  id="bucket-goal-input"
+                  className="form-control"
+                  min="1"
+                  value={editGoal}
+                  onChange={e => setEditGoal(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleEditSave()}
+                />
+              </div>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)}>Cancel</button>
