@@ -38,17 +38,32 @@ function Overview() {
   }
 
   return (
-    <div>
+    <div className="bg-light min-vh-100">
       <Navbar />
-    <main id="main-content" style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <div id="bucket-header" className="container-fluid bg-primary text-black rounded-bottom border border-top-0 border-dark">
-        <h1 id="bucket-title" className="text-center">{BUCKET_NAME}</h1>
+      <div className="container py-4" style={{ maxWidth: '860px' }}>
+
+        <div id="bucket-header" className="card border-0 shadow-sm rounded-3 mb-4 text-white bg-primary">
+          <div className="card-body text-center py-4">
+            <h1 id="bucket-title" className="fw-bold mb-1">{BUCKET_NAME}</h1>
+            <p className="mb-0" style={{ opacity: 0.8 }}>Savings Goal: ${BUCKET_GOAL}</p>
+          </div>
+        </div>
+        
+        <NewTransaction onSubmit={handleSubmit} />
+
+        <div className="row g-4 mb-4">
+          <div className="col-md-5">
+            <BucketProgress totalContributed={totalContributed} bucketGoal={BUCKET_GOAL} />
+          </div>
+          <div className="col-md-7">
+            <Participants participants={participants} />
+          </div>
+        </div>
+
+        <Transactions transactions={transactions} bucketName={BUCKET_NAME} />
+        
+
       </div>
-      <BucketProgress totalContributed={totalContributed} bucketGoal={BUCKET_GOAL} />
-      <Participants participants={participants} />
-      <Transactions transactions={transactions} bucketName={BUCKET_NAME} />
-      <NewTransaction onSubmit={handleSubmit} />
-    </main>
     </div>
   );
 }

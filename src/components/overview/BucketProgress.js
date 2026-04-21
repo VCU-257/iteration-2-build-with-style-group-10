@@ -23,58 +23,64 @@ function BucketProgress({ totalContributed, bucketGoal }) {
   ].join(' ');
 
   return (
-    <div
-      id="bucket-progress"
-      className="container-fluid border border-secondary rounded-top text-center"
-      style={{ margin: '5px 0px 5px 0px', padding: '8px 0' }}
-    >
-      <h4>Progress</h4>
-      <svg
-        viewBox="0 0 100 110"
-        role="img"
-        aria-label={`Bucket ${pct}% full`}
-        style={{ width: '120px', height: '132px' }}
-      >
-        <defs>
-          <clipPath id="bucket-clip">
-            <polygon points="14,30 86,30 76,96 24,96" />
-          </clipPath>
-        </defs>
+    <div id="bucket-progress" className="card border-0 shadow-sm rounded-3 h-100">
+      <div className="card-body text-center d-flex flex-column align-items-center justify-content-center py-4">
+        <h5 className="fw-semibold mb-3">Progress</h5>
+        <svg
+          viewBox="0 0 100 110"
+          role="img"
+          aria-label={`Bucket ${pct}% full`}
+          style={{ width: '120px', height: '132px' }}
+        >
+          <defs>
+            <clipPath id="bucket-clip">
+              <polygon points="14,30 86,30 76,96 24,96" />
+            </clipPath>
+          </defs>
 
-        {/* Full flat fill at 100% */}
-        {pct === 100 && (
-          <polygon points="14,30 86,30 76,96 24,96" fill="var(--bs-primary)" />
-        )}
+          {pct === 100 && (
+            <polygon points="14,30 86,30 76,96 24,96" fill="var(--bs-primary)" />
+          )}
 
-        {/* Animated wave fill between 0–100% */}
-        {pct > 0 && pct < 100 && (
-          <g clipPath="url(#bucket-clip)">
-            <path d={buildWavePath(waterY)} fill="var(--bs-primary)">
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                from="0 0"
-                to="-50 0"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </g>
-        )}
+          {pct > 0 && pct < 100 && (
+            <g clipPath="url(#bucket-clip)">
+              <path d={buildWavePath(waterY)} fill="var(--bs-primary)">
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  from="0 0"
+                  to="-50 0"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </path>
+            </g>
+          )}
 
-        {/* Open-top bucket outline (left side, bottom, right side — no top edge) */}
-        <path
-          d="M 14 30 L 24 96 L 76 96 L 86 30"
-          fill="none"
-          stroke="#444"
-          strokeWidth="3"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
-      </svg>
-      <p style={{ margin: '2px 0 6px', fontSize: '0.9rem' }}>
-        {pct}% (${totalContributed} / ${bucketGoal})
-      </p>
+          <path
+            d="M 14 30 L 24 96 L 76 96 L 86 30"
+            fill="none"
+            stroke="#444"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        </svg>
+
+        <div className="progress w-75 mt-3" style={{ height: '8px' }}>
+          <div
+            className="progress-bar"
+            role="progressbar"
+            style={{ width: `${pct}%` }}
+            aria-valuenow={pct}
+            aria-valuemin="0"
+            aria-valuemax="100"
+          />
+        </div>
+        <p className="mt-2 mb-0 text-muted small">
+          ${totalContributed} of ${bucketGoal} raised &mdash; {pct}%
+        </p>
+      </div>
     </div>
   );
 }
