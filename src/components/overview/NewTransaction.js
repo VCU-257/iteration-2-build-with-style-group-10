@@ -21,13 +21,14 @@ function NewTransaction({ onSubmit }) {
 
   return (
     <>
-      <div id="new-transaction-container" className="d-grid mb-4">
+      <div id="new-transaction-container" className="d-grid flex-grow-1">
         <button
           type="button"
-          className="btn btn-primary btn-lg rounded-3 shadow-sm py-3"
+          className="btn btn-success btn-lg rounded-3 shadow-sm py-3"
           onClick={() => setShowModal(true)}
         >
-          + Make New Transaction
+          <i className="bi bi-cash-coin me-2" style={{ fontSize: '1.2rem' }}></i>
+          MAKE NEW TRANSACTION
         </button>
       </div>
 
