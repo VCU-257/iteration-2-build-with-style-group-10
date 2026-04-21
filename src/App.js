@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <BucketProvider>
-    <BrowserRouter>
+    <BrowserRouter basename="/iteration-2-build-with-style-group-10">
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/transactions" element={<Transactions />} />
