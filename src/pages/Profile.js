@@ -8,7 +8,7 @@ function Profile() {
         <img
           src="profile-pic.png"
           className="rounded-circle"
-          alt="profile picture"
+          alt="User avatar"
           width="150"
           height="150"
           style={{ marginLeft: '20px', marginTop: '20px' }}
@@ -19,15 +19,15 @@ function Profile() {
         <div className="list-group mt-3">
           {['Bucket1', 'Bucket2', 'Bucket3'].map((id) => (
             <div key={id}>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="list-group-item list-group-item-action"
                 data-bs-toggle="collapse"
                 data-bs-target={`#${id}`}
                 aria-expanded="false"
               >
                 Budget Bucket
-              </a>
+              </button>
               <div className="collapse" id={id}>
                 <div className="card card-body">
                   <p>Amount saved: $1000</p>
