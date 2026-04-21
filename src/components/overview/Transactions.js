@@ -32,7 +32,7 @@ function Transactions({ transactions, bucketName }) {
     <>
       <div id="transactions" className="card border-0 shadow-sm rounded-3 mb-4 overflow-hidden">
         <div className="card-header bg-white border-bottom d-flex align-items-center">
-          <h5 className="mb-0 fw-semibold">Recent Transactions</h5>
+          <h5 className="mb-0 fw-semibold">Recent Contributions</h5>
           {transactions.length > 0 && (
             <span className="badge bg-secondary rounded-pill ms-2">{transactions.length}</span>
           )}
@@ -41,7 +41,7 @@ function Transactions({ transactions, bucketName }) {
           <ul id="transactions-list" className="list-group list-group-flush">
             {transactions.length === 0 ? (
               <li id="transactions-empty" className="list-group-item text-center text-muted py-4">
-                No transactions yet
+                No contributions yet
               </li>
             ) : (
               visibleTransactions.map((t, i) => (
@@ -56,7 +56,7 @@ function Transactions({ transactions, bucketName }) {
                   className="btn btn-sm btn-outline-secondary px-4"
                   onClick={() => setShowAll(true)}
                 >
-                  View All Transactions
+                  View All Contributions
                 </button>
               </li>
             )}
@@ -76,7 +76,7 @@ function Transactions({ transactions, bucketName }) {
         <div className="modal-dialog modal-dialog-scrollable">
           <div className="modal-content border-0 shadow">
             <div className="modal-header">
-              <h5 className="modal-title fw-semibold" id="all-transactions-modal-label">All Transactions</h5>
+              <h5 className="modal-title fw-semibold" id="all-transactions-modal-label">All Contributions</h5>
               <button type="button" className="btn-close" onClick={() => setShowAll(false)} aria-label="Close"></button>
             </div>
             <div className="modal-body p-0">
