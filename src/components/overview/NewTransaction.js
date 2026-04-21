@@ -21,14 +21,14 @@ function NewTransaction({ onSubmit }) {
 
   return (
     <>
-      <div id="new-transaction-container" className="container-fluid" style={{ padding: '10px 0px 0px 0px', margin: '0' }}>
+      <div id="new-transaction-container" className="d-grid flex-grow-1">
         <button
           type="button"
-          className="btn btn-primary"
-          style={{ width: '100%' }}
+          className="btn btn-success btn-lg rounded-3 shadow-sm py-3"
           onClick={() => setShowModal(true)}
         >
-          Make New Transaction
+          <i className="bi bi-cash-coin me-2" style={{ fontSize: '1.2rem' }}></i>
+          New Contribution
         </button>
       </div>
 
@@ -42,15 +42,15 @@ function NewTransaction({ onSubmit }) {
         style={{ display: showModal ? 'block' : 'none' }}
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content border-0 shadow">
             <div className="modal-header">
-              <h5 className="modal-title" id="transaction-modal-label">New Transaction</h5>
+              <h5 className="modal-title fw-semibold" id="transaction-modal-label">New Contribution</h5>
               <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form id="transaction-form">
                 <div className="mb-3">
-                  <label htmlFor="contributor-name" className="form-label">Contributing as</label>
+                  <label htmlFor="contributor-name" className="form-label fw-medium">Contributing as</label>
                   <input
                     type="text"
                     id="contributor-name"
@@ -61,7 +61,7 @@ function NewTransaction({ onSubmit }) {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="amount-input" className="form-label">Amount ($)</label>
+                  <label htmlFor="amount-input" className="form-label fw-medium">Amount ($)</label>
                   <input
                     type="number"
                     id="amount-input"

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from '../components/navbar/Navbar';
-function New_Bucket() {
+function NewBucket() {
     return (
         <div>
             <Navbar activePage="Home" />
@@ -34,7 +34,7 @@ function New_Bucket() {
                     <input type="text" class="form-control" id="participants" />
                     <input type="text" class="form-control mt-3" id="participants"/>
                     <div>
-                        <p><a href="#">Send Invite Link for New Users</a></p>
+                        <p><button type="button" className="btn btn-link p-0">Send Invite Link for New Users</button></p>
                     </div>
                     <button href="#" type="submit" class="btn btn-primary text-black mb-5">View Bucket</button>
                 </div>
@@ -43,4 +43,4 @@ function New_Bucket() {
     );
 }
 
-export default New_Bucket;
+export default NewBucket;

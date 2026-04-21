@@ -5,13 +5,19 @@ const PAGE_SIZE = 5;
 
 function TransactionRow({ t, bucketName }) {
   return (
-    <li className="list-group-item">
-      <div className="container">
-        <div className="row">
-          <div className="col-3 border-end" style={{ padding: '0' }}><b>{t.name}</b></div>
-          <div className="col"><p style={{ textAlign: 'end', margin: '0px' }}>added ${t.amount} to {bucketName}</p></div>
-        </div>
+    <li className="list-group-item d-flex align-items-center gap-3 py-3">
+      <div
+        className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center fw-bold"
+        style={{ width: 36, height: 36, fontSize: '0.85rem', flexShrink: 0 }}
+        aria-hidden="true"
+      >
+        {t.name[0].toUpperCase()}
       </div>
+      <div className="flex-grow-1">
+        <span className="fw-medium">{t.name}</span>
+        <span className="text-muted"> contributed on {t.date}</span>
+      </div>
+      <span className="fw-bold text-success flex-shrink-0">+${t.amount}</span>
     </li>
   );
 }
@@ -24,34 +30,38 @@ function Transactions({ transactions, bucketName }) {
 
   return (
     <>
-      <div id="transactions" className="container-fluid border border-secondary rounded-bottom" style={{ margin: '5px 0px 0px 0px' }}>
-        <div className="row border-bottom border-secondary" style={{ margin: '5px 0px 5px 0px' }}>
-          <h2 className="text-center">Recent Transactions</h2>
+      <div id="transactions" className="card border-0 shadow-sm rounded-3 mb-4 overflow-hidden">
+        <div className="card-header bg-white border-bottom d-flex align-items-center">
+          <h5 className="mb-0 fw-semibold">Recent Contributions</h5>
+          {transactions.length > 0 && (
+            <span className="badge bg-secondary rounded-pill ms-2">{transactions.length}</span>
+          )}
         </div>
-        <ul id="transactions-list" className="list-group">
-          {transactions.length === 0 ? (
-            <li id="transactions-empty" className="list-group-item text-center text-muted">
-              No transactions yet
-            </li>
-          ) : (
-            visibleTransactions.map((t, i) => (
-              <TransactionRow key={i} t={t} index={i} bucketName={bucketName} />
-            ))
-          )}
-          {hasMore && (
-            <li id="load-more-container" className="list-group-item text-center border-0" style={{ margin: '0', padding: '0' }}>
-              <button
-                id="load-more-btn"
-                type="button"
-                className="btn btn-secondary rounded-top-0"
-                style={{ width: '100%', marginBottom: '5px' }}
-                onClick={() => setShowAll(true)}
-              >
-                View All Transactions
-              </button>
-            </li>
-          )}
-        </ul>
+        <div className="card-body p-0">
+          <ul id="transactions-list" className="list-group list-group-flush">
+            {transactions.length === 0 ? (
+              <li id="transactions-empty" className="list-group-item text-center text-muted py-4">
+                No contributions yet
+              </li>
+            ) : (
+              visibleTransactions.map((t, i) => (
+                <TransactionRow key={i} t={t} index={i} bucketName={bucketName} />
+              ))
+            )}
+            {hasMore && (
+              <li id="load-more-container" className="list-group-item text-center py-3">
+                <button
+                  id="load-more-btn"
+                  type="button"
+                  className="btn btn-sm btn-outline-secondary px-4"
+                  onClick={() => setShowAll(true)}
+                >
+                  View All Contributions
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
 
       {showAll && <div className="modal-backdrop fade show"></div>}
@@ -64,12 +74,12 @@ function Transactions({ transactions, bucketName }) {
         style={{ display: showAll ? 'block' : 'none' }}
       >
         <div className="modal-dialog modal-dialog-scrollable">
-          <div className="modal-content">
+          <div className="modal-content border-0 shadow">
             <div className="modal-header">
-              <h5 className="modal-title" id="all-transactions-modal-label">All Transactions</h5>
+              <h5 className="modal-title fw-semibold" id="all-transactions-modal-label">All Contributions</h5>
               <button type="button" className="btn-close" onClick={() => setShowAll(false)} aria-label="Close"></button>
             </div>
-            <div className="modal-body" style={{ padding: '0' }}>
+            <div className="modal-body p-0">
               <ul className="list-group list-group-flush">
                 {transactions.map((t, i) => (
                   <TransactionRow key={i} t={t} index={i} bucketName={bucketName} />
