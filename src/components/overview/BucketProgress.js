@@ -67,16 +67,6 @@ function BucketProgress({ totalContributed, bucketGoal }) {
           />
         </svg>
 
-        <div className="progress w-75 mt-3" style={{ height: '8px' }}>
-          <div
-            className="progress-bar"
-            role="progressbar"
-            style={{ width: `${pct}%` }}
-            aria-valuenow={pct}
-            aria-valuemin="0"
-            aria-valuemax="100"
-          />
-        </div>
         <p className="mt-2 mb-0 text-muted small">
           ${totalContributed} of ${bucketGoal} raised &mdash; {pct}%
         </p>

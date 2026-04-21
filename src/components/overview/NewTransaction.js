@@ -28,7 +28,7 @@ function NewTransaction({ onSubmit }) {
           onClick={() => setShowModal(true)}
         >
           <i className="bi bi-cash-coin me-2" style={{ fontSize: '1.2rem' }}></i>
-          MAKE NEW TRANSACTION
+          New Transaction
         </button>
       </div>
 

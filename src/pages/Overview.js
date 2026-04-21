@@ -36,7 +36,7 @@ function Overview() {
       );
     });
 
-    setTransactions(prev => [{ name, amount }, ...prev]);
+    setTransactions(prev => [{ name, amount, date: new Date().toLocaleDateString() }, ...prev]);
   }
 
   function handleEditOpen() {

@@ -15,9 +15,9 @@ function TransactionRow({ t, bucketName }) {
       </div>
       <div className="flex-grow-1">
         <span className="fw-medium">{t.name}</span>
-        <span className="text-muted"> contributed to {bucketName}</span>
+        <span className="text-muted"> contributed on {t.date}</span>
       </div>
-      <span className="fw-bold text-success">+${t.amount}</span>
+      <span className="fw-bold text-success flex-shrink-0">+${t.amount}</span>
     </li>
   );
 }
@@ -30,8 +30,8 @@ function Transactions({ transactions, bucketName }) {
 
   return (
     <>
-      <div id="transactions" className="card border-0 shadow-sm rounded-3 mb-4">
-        <div className="card-header bg-white border-bottom d-flex align-items-center" style={{ borderRadius: 'var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0' }}>
+      <div id="transactions" className="card border-0 shadow-sm rounded-3 mb-4 overflow-hidden">
+        <div className="card-header bg-white border-bottom d-flex align-items-center">
           <h5 className="mb-0 fw-semibold">Recent Transactions</h5>
           {transactions.length > 0 && (
             <span className="badge bg-secondary rounded-pill ms-2">{transactions.length}</span>
