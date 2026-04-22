@@ -1,6 +1,10 @@
 import Navbar from '../components/navbar/Navbar';
 
 function Settings() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSavedMessage('Changes saved successfully.');
+  };
   return (
     <div>
       <Navbar activePage="Settings"/>
@@ -78,6 +82,12 @@ function Settings() {
               </div>
             </div>
 
+            {savedMessage && (
+            <div className="alert alert-success" role="alert">
+             {savedMessage}
+           </div>
+            )}
+
             <div className="mb-5">
               <button type="submit" className="btn btn-primary me-2">Save Changes</button>
               <button type="button" className="btn btn-secondary">Cancel</button>
@@ -100,10 +110,5 @@ function Settings() {
   );
 }
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  console.log("Changes saved successfully!");
-};
 
 export default Settings;
