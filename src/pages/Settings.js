@@ -7,7 +7,7 @@ function Settings() {
       <div className="container pt-4 pb-5">
         <h1 className="mb-4">Settings</h1>
 
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
           <div className="row g-4">
           <div className="col-12 col-lg-8">
             <div className="card mb-4">
