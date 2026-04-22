@@ -7,12 +7,12 @@ function Settings() {
       <div className="container pt-4 pb-5">
         <h1 className="mb-4">Settings</h1>
 
-        <div className="row g-4">
+        <form> <div className="row g-4">
           <div className="col-12 col-lg-8">
             <div className="card mb-4">
               <div className="card-header">Account Information</div>
               <div className="card-body">
-                <form>
+   
                   <div className="mb-3">
                     <label htmlFor="fullName" className="form-label">Full Name</label>
                     <input type="text" className="form-control" id="fullName" placeholder="Amy Orellana" />
@@ -29,14 +29,14 @@ function Settings() {
                     <label htmlFor="password" className="form-label">Change Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Enter new password" />
                   </div>
-                </form>
+     
               </div>
             </div>
 
             <div className="card mb-4">
               <div className="card-header">Bank Information</div>
               <div className="card-body">
-                <form>
+          
                   <div className="mb-3">
                     <label htmlFor="bankSelect" className="form-label">Select Bank Account</label>
                     <select className="form-select" id="bankSelect" defaultValue="">
@@ -56,7 +56,7 @@ function Settings() {
                     </select>
                   </div>
                   <button type="button" className="btn btn-outline-primary">Manage Account</button>
-                </form>
+      
               </div>
             </div>
 
@@ -93,6 +93,7 @@ function Settings() {
             </div>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );
