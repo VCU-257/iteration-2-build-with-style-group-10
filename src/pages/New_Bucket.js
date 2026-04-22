@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from '../components/navbar/Navbar';
 function NewBucket() {
+    const navigate = useNavigate();
     return (
         <div>
             <Navbar activePage="Home" />
-                <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" action="/overview">
+                <form class="container col-8 col-lg-11 col-xxl-12 mt-4 d-grid gap-0 row-gap-3" onSubmit={e => { e.preventDefault(); navigate('/overview'); }}>
                 <div>
                     <label for="inputName" class="form-label">Bucket Name</label>
                     <input type="text" class="form-control" id="inputName" />
