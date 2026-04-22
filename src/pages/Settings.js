@@ -1,4 +1,5 @@
 import Navbar from '../components/navbar/Navbar';
+import { useState } from 'react';
 
 function Settings() {
   const [savedMessage, setSavedMessage] = useState('');
