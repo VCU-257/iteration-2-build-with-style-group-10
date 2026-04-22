@@ -1,6 +1,7 @@
 import Navbar from '../components/navbar/Navbar';
 
 function Settings() {
+  const [savedMessage, setSavedMessage] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     setSavedMessage('Changes saved successfully.');
