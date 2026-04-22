@@ -7,7 +7,8 @@ function Settings() {
       <div className="container pt-4 pb-5">
         <h1 className="mb-4">Settings</h1>
 
-        <form> <div className="row g-4">
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="row g-4">
           <div className="col-12 col-lg-8">
             <div className="card mb-4">
               <div className="card-header">Account Information</div>
@@ -19,11 +20,11 @@ function Settings() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="emailAddress" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="emailAddress" placeholder="amy@example.com" pattern="^[^\s@]+@[^\s@]+\.com$" required/>
+                    <input type="email" className="form-control" id="emailAddress" placeholder="amy@example.com" pattern="^[^\s@]+@[^\s@]+\.com$" title="Email must end with domain name" required/>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                    <input type="tel" className="form-control" id="phoneNumber" placeholder="(555) 555-5555" pattern="[0-9]*" inputMode="numeric" title="Only enter digits" required />
+                    <input type="tel" className="form-control" id="phoneNumber" placeholder="(555) 555-5555" pattern="[0-9]*" inputMode="numeric" title="Only enter numbers" required />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="password" className="form-label">Change Password</label>
@@ -78,7 +79,7 @@ function Settings() {
             </div>
 
             <div className="mb-5">
-              <button type="button" className="btn btn-primary me-2">Save Changes</button>
+              <button type="submit" className="btn btn-primary me-2">Save Changes</button>
               <button type="button" className="btn btn-secondary">Cancel</button>
             </div>
           </div>
@@ -98,5 +99,11 @@ function Settings() {
     </div>
   );
 }
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  console.log("Changes saved successfully!");
+};
 
 export default Settings;
