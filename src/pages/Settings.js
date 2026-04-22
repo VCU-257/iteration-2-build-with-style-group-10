@@ -19,11 +19,11 @@ function Settings() {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="emailAddress" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="emailAddress" placeholder="amy@example.com" pattern="^[^\s@]+@[^\s@]+\.com$"/>
+                    <input type="email" className="form-control" id="emailAddress" placeholder="amy@example.com" pattern="^[^\s@]+@[^\s@]+\.com$" required/>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                    <input type="tel" className="form-control" id="phoneNumber" placeholder="(555) 555-5555" pattern="[0-9]*" inputMode="numeric" />
+                    <input type="tel" className="form-control" id="phoneNumber" placeholder="(555) 555-5555" pattern="[0-9]*" inputMode="numeric" title="Only enter digits" required />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="password" className="form-label">Change Password</label>
